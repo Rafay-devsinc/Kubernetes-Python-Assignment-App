@@ -1,10 +1,7 @@
 # Docker Python Assignment App
 
 ## Docker (Students Task)
-Students must understand this Repo and dockerize the app:
-- bind mounts
-- named volumes
-- .env file
+Students must understand this Repo and dockerize the app
 
 # Instructions for Dockerizing the Python App
 
@@ -12,8 +9,8 @@ Students must understand this Repo and dockerize the app:
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repo-link>
-   cd <repo-folder>
+   git clone https://github.com/Rafay-devsinc/Docker-Python-Assignment-App.git
+   cd Docker-Python-Assignment-App
    ```
 
 2. **Create a `.env` File**:
@@ -57,10 +54,7 @@ Students must understand this Repo and dockerize the app:
 
    
 2. **Build the Docker Image**:
-   - Run the following command to build the Docker image:
-     ```bash
-     docker build -t python-app .
-     ```
+  
 
 3. **Run the Docker Container**:
    
