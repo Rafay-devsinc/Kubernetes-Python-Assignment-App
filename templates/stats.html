@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - Docker Assignment App</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/assignment">Assignment</a></li>
+                <li><a href="/stats">Statistics</a></li>
+                <li><a href="/logs">Logs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="content">
+            <h1>Task Statistics</h1>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h2>Total Tasks</h2>
+                    <p class="stat-number">{{ stats.total }}</p>
+                </div>
+                
+                <div class="stat-card status-pending">
+                    <h2>Pending</h2>
+                    <p class="stat-number">{{ stats.pending }}</p>
+                </div>
+                
+                <div class="stat-card status-in-progress">
+                    <h2>In Progress</h2>
+                    <p class="stat-number">{{ stats.in_progress }}</p>
+                </div>
+                
+                <div class="stat-card status-completed">
+                    <h2>Completed</h2>
+                    <p class="stat-number">{{ stats.completed }}</p>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card priority-high">
+                    <h2>High Priority</h2>
+                    <p class="stat-number">{{ stats.high_priority }}</p>
+                </div>
+                
+                <div class="stat-card priority-medium">
+                    <h2>Medium Priority</h2>
+                    <p class="stat-number">{{ stats.medium_priority }}</p>
+                </div>
+                
+                <div class="stat-card priority-low">
+                    <h2>Low Priority</h2>
+                    <p class="stat-number">{{ stats.low_priority }}</p>
+                </div>
+            </div>
+            
+            <div class="stats-summary">
+                <h2>Summary</h2>
+                <ul>
+                    <li>Completion Rate: 
+                        {% if stats.total > 0 %}
+                            {{ "%.1f"|format((stats.completed / stats.total * 100)) }}%
+                        {% else %}
+                            0%
+                        {% endif %}
+                    </li>
+                    <li>Active Tasks: {{ stats.pending + stats.in_progress }}</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Docker Assignment App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
