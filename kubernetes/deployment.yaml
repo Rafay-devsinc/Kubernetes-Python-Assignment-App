@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: flask-app:latest
-        imagePullPolicy: Never  # For minikube local images
+        image: rafaydevsinc/assignment_app:latest
+        imagePullPolicy: Always  # Pull from Docker Hub
         ports:
         - containerPort: 5001
           name: http

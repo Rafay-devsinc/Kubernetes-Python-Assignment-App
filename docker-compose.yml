@@ -1,0 +1,52 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14-alpine
+    container_name: assignment_postgres
+    environment:
+      POSTGRES_DB: assignment_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  # Flask Application
+  flask-app:
+    image: rafaydevsinc/assignment_app:latest
+    container_name: assignment_flask_app
+    environment:
+      APP_NAME: "Task Management App"
+      APP_ENV: "production"
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/assignment_db"
+      SECRET_KEY: "your-secret-key-change-in-production"
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./logs:/app/logs
+      - app_data:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  app_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

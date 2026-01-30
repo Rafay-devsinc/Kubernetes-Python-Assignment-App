@@ -18,11 +18,8 @@ fi
 echo "✅ Minikube is running"
 echo ""
 
-# Build Docker image in minikube environment
-echo "📦 Building Docker image..."
-eval $(minikube docker-env)
-docker build -t flask-app:latest ..
-echo "✅ Docker image built successfully"
+# Using Docker Hub image (no local build needed)
+echo "📦 Using image from Docker Hub: rafaydevsinc/assignment_app:latest"
 echo ""
 
 # Apply Kubernetes manifests
